@@ -1,3 +1,5 @@
+This fork is the same as [ericelliott/credential](https://github.com/ericelliott/credential) except it works in strict mode and `constantTimeCompare` timing may be different.
+
 # Credential
 [![Travis-CI](https://travis-ci.org/ericelliott/credential.svg)](https://travis-ci.org/ericelliott/credential)
 

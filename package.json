@@ -1,5 +1,5 @@
 {
-  "name": "credential",
+  "name": "@trex-arms/credential",
   "version": "2.0.0",
   "description": "Easy password hashing and verification in Node. Protects against brute force, rainbow tables, and timing attacks.",
   "main": "credential.js",
@@ -61,7 +61,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:ericelliott/credential.git"
+    "url": "git@github.com:trex-arms/credential.git"
   },
   "keywords": [
     "password",
@@ -82,7 +82,7 @@
   "author": "Eric Elliott",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ericelliott/credential/issues"
+    "url": "https://github.com/trex-arms/credential/issues"
   },
   "pre-commit": [
     "validate"

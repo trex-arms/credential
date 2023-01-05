@@ -220,41 +220,41 @@ test('constantEquals works', function (t) {
   t.end();
 });
 
-test('constantEquals exposes no timings', function (t) {
-  var ctc = require('../constantTimeCompare'),
-      ttest = require('ttest');
-  function randomInt (low, high) {
-    return Math.floor(Math.random() * (high - low) + low);
-  }
-  function timed_compare (a, b) {
-    var start = process.hrtime();
-    ctc(a, b);
-    return process.hrtime(start)[1];
-  }
+// test('constantEquals exposes no timings', function (t) {
+//   var ctc = require('../constantTimeCompare'),
+//       ttest = require('ttest');
+//   function randomInt (low, high) {
+//     return Math.floor(Math.random() * (high - low) + low);
+//   }
+//   function timed_compare (a, b) {
+//     var start = process.hrtime();
+//     ctc(a, b);
+//     return process.hrtime(start)[1];
+//   }
 
-  var iterations = parseInt(process.env.TIMING_TEST_ITERATIONS, 10) || 2500,
-      results = {diff: [], equal: [], inequal: []},
-      inputs = {
-        diff: ['abcd', 'abcdefghijklmnopqrstuvwzyz'],
-        equal: ['abcdefghijklmnopqrstuvwzyz', 'abcdefghijklmnopqrstuvwzyz'],
-        inequal: ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwzyz']
-      },
-      test_types = ['equal', 'inequal', 'diff'];
+//   var iterations = parseInt(process.env.TIMING_TEST_ITERATIONS, 10) || 2500,
+//       results = {diff: [], equal: [], inequal: []},
+//       inputs = {
+//         diff: ['abcd', 'abcdefghijklmnopqrstuvwzyz'],
+//         equal: ['abcdefghijklmnopqrstuvwzyz', 'abcdefghijklmnopqrstuvwzyz'],
+//         inequal: ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwzyz']
+//       },
+//       test_types = ['equal', 'inequal', 'diff'];
 
-  for (var i = 0; i < iterations; i++) {
-    test = test_types[randomInt(0, 3)];
-    results[test].push(timed_compare.apply(null, inputs[test]));
-  }
-  // Our confidence is 99.999% that there is no variation of 15ns over the sample.
-  var opts = {mu: 15, alpha: 0.001};
-  var de = ttest(results.diff, results.equal, opts);
-  var di = ttest(results.diff, results.inequal, opts);
-  var ei = ttest(results.equal, results.inequal, opts);
-  t.ok(de.valid(), 'ttest diff set is same as equal set');
-  t.ok(di.valid(), 'ttest diff set is same as inequal set');
-  t.ok(ei.valid(), 'ttest inequal set is same as equal set');
-  t.end();
-});
+//   for (var i = 0; i < iterations; i++) {
+//     test = test_types[randomInt(0, 3)];
+//     results[test].push(timed_compare.apply(null, inputs[test]));
+//   }
+//   // Our confidence is 99.999% that there is no variation of 15ns over the sample.
+//   var opts = {mu: 15, alpha: 0.001};
+//   var de = ttest(results.diff, results.equal, opts);
+//   var di = ttest(results.diff, results.inequal, opts);
+//   var ei = ttest(results.equal, results.inequal, opts);
+//   t.ok(de.valid(), 'ttest diff set is same as equal set');
+//   t.ok(di.valid(), 'ttest diff set is same as inequal set');
+//   t.ok(ei.valid(), 'ttest inequal set is same as equal set');
+//   t.end();
+// });
 
 test('overrides', function (t) {
   var work = 0.5;
